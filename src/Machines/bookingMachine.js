@@ -1,6 +1,7 @@
+
 import { createMachine } from 'xstate';
 
-const bookingMachine = createMachine({
+export const bookingMachine = createMachine({
   id : "Buy plane tickets",
   initial : "inicial",
   states : {
@@ -30,4 +31,3 @@ const bookingMachine = createMachine({
   }
 })
 
-export default bookingMachine;

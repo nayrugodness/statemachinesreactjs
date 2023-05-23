@@ -1,5 +1,6 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { BaseLayout} from './components/baseLayout';
 
 
 function App() {

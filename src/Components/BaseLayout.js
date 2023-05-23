@@ -1,9 +1,8 @@
 import React from 'react';
 import { useMachine } from '@xstate/react';
-import bookingMachine from './Machines/bookingMachine';
+import { bookingMachine } from '../machines/bookingMachine';
 
-
-const BaseLayout = () => {
+export const BaseLayout = () => {
 
     const [ state, send ] = useMachine(bookingMachine)
     console.log('nuestra maquina ' , state)
@@ -11,5 +10,3 @@ const BaseLayout = () => {
         <div>Hola</div>
     )
 }
-
-export default BaseLayout;
