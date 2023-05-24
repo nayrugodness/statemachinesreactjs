@@ -1,47 +1,81 @@
-import { createMachine } from "xstate";
+import { createMachine, assign } from "xstate";
 
-const bookingMachine = createMachine({
-  id: "buy plane tickets",
-  initial: "initial",
+const fillCountries = {
+  initial: "loading",
   states: {
-    initial: {
+    loading: {
       on: {
-        START: {
-          target : 'search',
-          actions : 'imprimirInicio'
-        }
+        DONE: "success",
+        ERROR: "failure",
       },
     },
-    search: {
-      entry : 'imprimirEntrada',
-      exit : 'imprimirSalida',
+    success: {},
+    failure: {
       on: {
-        CONTINUE: "passengers",
-        CANCEL: "initial",
-      },
-    },
-    tickets: {
-      on: {
-        FINISH: "initial",
-      },
-    },
-    passengers: {
-      on: {
-        DONE: "tickets",
-        CANCEL: "initial",
+        RETRY: { target: "loading" },
       },
     },
   },
-},
-{
-  actions : {
-    imprimirInicio : () => console.log('Imprimir inicio '),
-    imprimieEntrada : () => console.log('Imprimir entrada a search'),
-    imprimirSalida : () => console.log('Imprimir salida'),
+};
+
+const bookingMachine = createMachine(
+  {
+    id: "buy plane tickets",
+    initial: "initial",
+    context: {
+      passengers: [],
+      selectedCountry: "",
+    },
+    states: {
+      initial: {
+        on: {
+          START: {
+            target: "search",
+          },
+        },
+      },
+      search: {
+        on: {
+          CONTINUE: {
+            target: "passengers",
+            actions: assign({
+              selectedCountry: (context, event) => event.selectedCountry,
+            }),
+          },
+          CANCEL: "initial",
+        },
+        ...fillCountries,
+      },
+      tickets: {
+        on: {
+          FINISH: "initial",
+        },
+      },
+      passengers: {
+        on: {
+          DONE: "tickets",
+          CANCEL: {
+            target: "initial",
+            actions: "cleanContext",
+          },
+          ADD: {
+            target: "passengers",
+            actions: assign((context, event) =>
+              context.passengers.push(event.newPassenger)
+            ),
+          },
+        },
+      },
+    },
+  },
+  {
+    actions: {
+      cleanContext: assign({
+        selectedCountry: "",
+        passengers: [],
+      }),
+    },
   }
-}
 );
-
-
 
 export default bookingMachine;

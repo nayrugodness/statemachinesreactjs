@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './Search.css';
 
-export const Search = ({ send, context }) => {
+export const Search = ({ send }) => {
   const [flight, setFlight] = useState('');
 
-  const goToPassengers = () =>{
-    send('CONTINUE')
+  const goToPassengers = () => {
+    send('CONTINUE', { selectedCountry: flight })
   }
+
   const handleSelectChange = (event) => {
     setFlight(event.target.value);
   };
@@ -20,7 +21,7 @@ export const Search = ({ send, context }) => {
         <option value="" disabled defaultValue>Escoge un país</option>
         {options.map((option) => <option value={option} key={option}>{option}</option>)}
       </select>
-      <button disabled={flight === ''} className='Search-continue button' onClick={goToPassengers}>Continuar</button>
+      <button onClick={goToPassengers} disabled={flight === ''} className='Search-continue button'>Continuar</button>
     </div>
   );
 }; 

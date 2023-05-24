@@ -8,18 +8,23 @@ export const Passengers = ({ state, send }) => {
     changeValue(e.target.value);
   }
 
-  const submit = (e) => {
-    e.preventDefault();
-    changeValue('');
-  }
-
   const goToTicket = () => {
     send('DONE')
   }
 
+  const submit = (e) => {
+    e.preventDefault();
+    send('ADD', { newPassenger: value })
+    changeValue('');
+  }
+
+  // Check if state or state.context is undefined
+  const { passengers } = state?.context || { passengers: [] };
+
   return (
     <form onSubmit={submit} className='Passengers'>
       <p className='Passengers-title title'>Agrega a las personas que van a volar ✈️</p>
+      {passengers.map((person, idx) => <p className='text' key={`person-${idx}`}>{person}</p>)}
       <input 
         id="name" 
         name="name" 
