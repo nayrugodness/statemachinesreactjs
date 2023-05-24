@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/nayrugodness/statemachinesreactjs/static/css/main.e49fb8c7.css",
+    "main.js": "/nayrugodness/statemachinesreactjs/static/js/main.9b0d87a7.js",
+    "static/js/787.7eb783c4.chunk.js": "/nayrugodness/statemachinesreactjs/static/js/787.7eb783c4.chunk.js",
+    "static/media/background-travel-2.jpg": "/nayrugodness/statemachinesreactjs/static/media/background-travel-2.1b3bc05ab3ab53a29ab2.jpg",
+    "index.html": "/nayrugodness/statemachinesreactjs/index.html",
+    "main.e49fb8c7.css.map": "/nayrugodness/statemachinesreactjs/static/css/main.e49fb8c7.css.map",
+    "main.9b0d87a7.js.map": "/nayrugodness/statemachinesreactjs/static/js/main.9b0d87a7.js.map",
+    "787.7eb783c4.chunk.js.map": "/nayrugodness/statemachinesreactjs/static/js/787.7eb783c4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e49fb8c7.css",
+    "static/js/main.9b0d87a7.js"
+  ]
+}
