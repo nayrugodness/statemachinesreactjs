@@ -18,8 +18,7 @@ export const Passengers = ({ state, send }) => {
     changeValue('');
   }
 
-  // Check if state or state.context is undefined
-  const { passengers } = state?.context || { passengers: [] };
+  const { passengers } = state.context;
 
   return (
     <form onSubmit={submit} className='Passengers'>
