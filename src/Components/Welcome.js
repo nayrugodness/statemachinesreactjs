@@ -3,6 +3,7 @@ import './Welcome.css';
 
 export const Welcome = ({ send }) => {
   const startBooking = () => {
+    send('START')
     console.log('start booking');
   };
 
